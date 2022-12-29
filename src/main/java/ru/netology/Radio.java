@@ -2,6 +2,7 @@ package ru.netology;
 
 public class Radio {
     private int currentStation;
+    private int currentVolume;
 
     public int getCurrentStation() {
         return currentStation;
@@ -11,31 +12,31 @@ public class Radio {
         currentStation = newCurrentStation;
     }
 
-    public void setToMaxStation() {
-        currentStation = 9;
+    public void nextRadioStation() {
+        int maxStation = 9;
+        if (currentStation >= maxStation) {
+            currentStation = 0;
+        } else {
+            currentStation += 1;
+        }
     }
 
-    public void setToMinStation() {
-        currentStation = 0;
-    }
-    public void nextStation(){
-        if (currentStation < 9) {
-            currentStation = currentStation + 1;
+    public void prevRadioStation() {
+        int maxStation = 9;
+        int minStation = 0;
+        if (currentStation == minStation) {
+            currentStation = maxStation;
+        } else {
+            currentStation -= 1;
         }
     }
-    public void prevStation(){
-        if (currentStation >= 0) {
-            currentStation = currentStation - 1;
-        }
-    }
-    public int currentVolume;
 
     public int getCurrentVolume() {
         return currentVolume;
     }
 
     public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume <= 0) {
+        if (newCurrentVolume < 0) {
             return;
         }
         if (newCurrentVolume > 10) {
@@ -43,25 +44,20 @@ public class Radio {
         }
         currentVolume = newCurrentVolume;
     }
-
-    public void setToMaxVolume() {
-        currentVolume = 10;
-    }
-
-    public void setToMinVolume() {
-        currentVolume = 0;
-    }
-
     public void increaseVolume() {
-        if (currentVolume <= 10) {
-            currentVolume = currentVolume + 1;
+        int maxVolume = 10;
+        if (currentVolume >= maxVolume) {
+            currentVolume = maxVolume;
+        } else {
+            currentVolume += 1;
         }
     }
-
     public void decreaseVolume() {
-        if (currentVolume >= 0) {
-            currentVolume = currentVolume - 1;
+        int minVolume = 0;
+        if (currentVolume <= minVolume) {
+            currentVolume = minVolume;
+        } else {
+            currentVolume -= 1;
         }
     }
 }
-
